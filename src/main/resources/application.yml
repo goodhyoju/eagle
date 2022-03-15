@@ -1,0 +1,15 @@
+server:
+  port : 8081
+spring:
+  application:
+    name: eagle
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  freemarker:
+    suffix: .ftl
+    cache: true
+  main:
+    banner-mode: off
