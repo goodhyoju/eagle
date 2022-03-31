@@ -42,4 +42,34 @@ public class PageController {
         ModelAndView view = new ModelAndView("login");
         return view;
     }
+
+    /**
+     * 이사 톡 보내기 팝업 창
+     * @return
+     */
+    @RequestMapping(value = "/moveoutConfigPopup" , method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView moveoutConfigPopup() {
+        ModelAndView view = new ModelAndView("moveoutConfigPopup");
+        return view;
+    }
+
+    /**
+     * 이사 톡 전송 리스트 팝업 창
+     * @return
+     */
+    @RequestMapping(value = "/moveoutListPopup" , method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView moveoutListPopup() {
+        ModelAndView view = new ModelAndView("moveoutListPopup");
+        return view;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/moveoutTestPopup" , method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView moveoutTestPopup() {
+        ModelAndView view = new ModelAndView("moveoutTestPopup");
+        return view;
+    }
 }

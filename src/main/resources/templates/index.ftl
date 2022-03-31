@@ -40,8 +40,12 @@
                                                 </div>
                                                 <div class="card-block">
 
-                                                    test
+                                                    <button class="btn btn-success" id="configBtn">이사톡 환경설정</button>
+                                                    <button class="btn btn-info" id="dashboardBtn">이사톡 대시보드</button>
+                                                    <button class="btn btn-dark" id="testBtn">이사톡 TEST 하기</button>
                                                     <p id="token-result"></p>
+
+
 
                                                 </div>
                                             </div>
@@ -63,29 +67,32 @@
 </body>
 
 <script type="text/javascript">
-    Kakao.init('699817b6a0cbbae4cc3ed7e9d1208db7');
-    Kakao.isInitialized();
-    Kakao.Auth.authorize({
-        redirectUri: 'http://localhost:8080'
+    $( document ).ready(function() {
+        $("#configBtn").click( function() {
+            PopupCenter('moveoutConfigPopup','moveout',800,600);
+        });
+        $("#dashboardBtn").click( function() {
+            PopupCenter('moveoutListPopup','moveout',screen.width,screen.height );
+        });
+        $("#testBtn").click( function() {
+            PopupCenter('moveoutTestPopup','moveout',800,600);
+        });
+
+
     });
-    displayToken()
-    function displayToken() {
-        const token = getCookie('authorize-access-token')
-        if(token) {
-            Kakao.Auth.setAccessToken(token)
-            Kakao.Auth.getStatusInfo(({ status }) => {
-                if(status === 'connected') {
-                    document.getElementById('token-result').innerText = 'login success. token: ' + Kakao.Auth.getAccessToken()
-                } else {
-                    Kakao.Auth.setAccessToken(null)
-                }
-            })
+    function PopupCenter(url, title, w, h) {
+        // Fixes dual-screen position                         Most browsers      Firefox
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        var newWindow = window.open(url, "_blank", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+        // Puts focus on the newWindow
+        if (window.focus) {
+            newWindow.focus();
         }
-    }
-    function getCookie(name) {
-        const value = "; " + document.cookie;
-        const parts = value.split("; " + name + "=");
-        if (parts.length === 2) return parts.pop().split(";").shift();
     }
 </script>
 </html>

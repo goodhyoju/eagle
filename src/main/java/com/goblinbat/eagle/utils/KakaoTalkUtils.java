@@ -1,8 +1,9 @@
-package com.goblinbat.eagle.controller;
+package com.goblinbat.eagle.utils;
 
+import com.goblinbat.eagle.data.CleanManiaTalkData;
+
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-
 import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.model.*;
 import net.nurigo.sdk.message.request.MultipleMessageSendingRequest;
@@ -10,42 +11,55 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.MultipleMessageSentResponse;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
- * packageName : com.goblinbat.eagle.controller
- * fileName : KakaoController
- * author : Jang Hyo Ju
- * date : 2022/03/02
+ * packageName : com.goblinbat.eagle.service
+ * fileName : KakaoTalkMainService
+ * author : goodhyoju
+ * date : 2022/03/24 9:39 AM
  * description :
- * ===========================================================
- * DATE AUTHOR NOTE
- * -----------------------------------------------------------
- * 2022/03/02 12:51 PM Jang Hyo Ju 최초 생성
  */
 
-@Controller
 @Slf4j
-@RequestMapping("/kakao")
-public class KakaoController {
-    private final DefaultMessageService messageService;
+@Component
+public class KakaoTalkUtils {
+
+    private  DefaultMessageService messageService;
+
+    @Value("${solapi.url}")
+    private   String SOLAPI_API_URL;
+
+    @Value("${solapi.api.key}")
+    private  String SOLAPI_API_KEY;
+
+    @Value("${solapi.api.secret}")
+    private  String SOLAPI_API_SECRET;
+
+    @Value("${solapi.templateid}")
+    private  String SOLAPI_TEMPLATELID;
+
+    @Value("${solapi.pfid}")
+    private  String SOLAPI_PFID;
 
     /**
      * 발급받은 API KEY와 API Secret Key를 사용해주세요.
      */
-    public KakaoController() {
-        this.messageService = NurigoApp.INSTANCE.initialize("NCSZC56IX8RZKPGI", "DW7NNT7ETDAJGIWQRKGLYCXLJR4GPJL7", "https://api.solapi.com");
+    @PostConstruct
+    public void init() {
+        this.messageService = NurigoApp.INSTANCE.initialize(this.SOLAPI_API_KEY, this.SOLAPI_API_SECRET, this.SOLAPI_API_URL);
     }
 
     /**
      * 단일 메시지 발송 예제
      */
-    @PostMapping("/send-one")
     public SingleMessageSentResponse sendOne() {
         Message message = new Message();
         message.setFrom("0104177");
@@ -62,7 +76,6 @@ public class KakaoController {
      * MMS 발송 예제
      * 단일 발송, 여러 건 발송 상관없이 이용 가능
      */
-    @PostMapping("/send-mms")
     public SingleMessageSentResponse sendMmsByResourcePath() throws IOException {
         ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();
@@ -84,7 +97,6 @@ public class KakaoController {
      * 여러 메시지 발송 예제
      * 한 번 실행으로 최대 10,000건 까지의 메시지가 발송 가능합니다.
      */
-    @PostMapping("/send-many")
     public MultipleMessageSentResponse sendMany() {
         ArrayList<Message> messageList = new ArrayList<>();
 
@@ -109,32 +121,35 @@ public class KakaoController {
     /**
      * 알림톡 한건 발송 예제
      */
-    @PostMapping("/send-one-ata")
-    public SingleMessageSentResponse sendOneAta() {
+    public SingleMessageSentResponse sendOneAta(CleanManiaTalkData cleanManiaTalkData) {
         KakaoOption kakaoOption = new KakaoOption();
-        // disableSms를 true로 설정하실 경우 문자로 대체발송 되지 않습니다.
-        // kakaoOption.setDisableSms(true);
+        // kakaoOption.setDisableSms(true);// disableSms를 true로 설정하실 경우 문자로 대체발송 되지 않습니다.
 
-        // 등록하신 카카오 비즈니스 채널의 pfId를 입력해주세요.
-        kakaoOption.setPfId("");
-        // 등록하신 카카오 알림톡 템플릿의 templateId를 입력해주세요.
-        kakaoOption.setTemplateId("");
+        // 등록하신 카카오 비즈니스 채널의 pfId
+        kakaoOption.setPfId(this.SOLAPI_PFID);
+        // 등록하신 카카오 알림톡 템플릿의 templateId
+        kakaoOption.setTemplateId(this.SOLAPI_TEMPLATELID);
 
         // 알림톡 템플릿 내에 #{변수} 형태가 존재할 경우 variables를 설정해주세요.
-        /*
+
         HashMap<String, String> variables = new HashMap<>();
-        variables.put("#{변수명1}", "테스트");
-        variables.put("#{변수명2}", "치환문구 테스트2");
+        variables.put("#{template}", cleanManiaTalkData.getTemplate());
+        variables.put("#{name}", cleanManiaTalkData.getName());
+        variables.put("#{phone}", cleanManiaTalkData.getPhone());
+        variables.put("#{movedate}", cleanManiaTalkData.getMovedate());
+        variables.put("#{start}", cleanManiaTalkData.getStart());
+        variables.put("#{end}", cleanManiaTalkData.getEnd());
+
         kakaoOption.setVariables(variables);
-        */
+
 
         Message message = new Message();
-        message.setFrom("029302266");
-        message.setTo("01000000000");
+        message.setFrom(cleanManiaTalkData.getSendernum());
+        message.setTo(cleanManiaTalkData.getReceivernum());
         message.setKakaoOptions(kakaoOption);
 
         SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
-        System.out.println(response);
+        log.debug(response.toString());
 
         return response;
     }
@@ -143,7 +158,6 @@ public class KakaoController {
      * 여러 알림톡 발송 예제
      * 한 번 실행으로 최대 10,000건 까지의 메시지가 발송 가능합니다.
      */
-    @PostMapping("/send-many-ata")
     public MultipleMessageSentResponse sendManyAta() {
         ArrayList<Message> messageList = new ArrayList<>();
 
@@ -183,7 +197,6 @@ public class KakaoController {
      * 친구톡 한건 발송 예제, send many 호환
      * 친구톡 내 버튼은 최대 5개까지만 생성 가능합니다.
      */
-    @PostMapping("/send-cta")
     public SingleMessageSentResponse sendOneCta() {
         KakaoOption kakaoOption = new KakaoOption();
         // disableSms를 true로 설정하실 경우 문자로 대체발송 되지 않습니다.
@@ -253,7 +266,6 @@ public class KakaoController {
      * 친구톡 이미지 단건 발송, send many 호환
      * 친구톡 내 버튼은 최대 5개까지만 생성 가능합니다.
      */
-    @PostMapping("/send-cti")
     public SingleMessageSentResponse sendOneCti() throws IOException {
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -280,5 +292,4 @@ public class KakaoController {
 
         return response;
     }
-
 }
