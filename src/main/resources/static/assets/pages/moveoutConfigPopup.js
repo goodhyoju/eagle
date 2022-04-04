@@ -74,7 +74,7 @@ function loadingConfig(){
 
         },
         error: function (request, status, error){
-            notifycation("정보를 불러올 수 없습니다.","danger")
+            notifycation("정보를 불러올 수 없습니다.","danger",'right')
         }
 
     });
@@ -132,12 +132,12 @@ function createMask(string) {
     return string.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
 }
 
-function notifycation(message,type){
+function notifycation(message,type,align){
     $.bootstrapGrowl(message, {
         ele: 'body', // which element to append to
         type: type, // (null, 'info', 'error', 'success')
         offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-        align: 'right', // ('left', 'right', or 'center')
+        align: align, // ('left', 'right', or 'center')
         width: 'auto'
     });
 }
@@ -153,6 +153,32 @@ $('#configSaveBtn').confirmation({
     btnCancelClass: 'btn btn-danger',
     onConfirm: function (event, element) {
         var mtypeValue = $("input[name='mtype']:checked").val();
+        var getNames = $("input[name='"+mtypeValue+"_name']").map(function(){ return this.value }).get();
+        var getPhone = $("input[name='"+mtypeValue+"_phone']").map(function(){ return this.value }).get();
+        /*console.log("name size: "+getNames.length);
+        console.log("phone size: "+getPhone.length);*/
+
+        // check length to names,phones
+        var checkFlag = false;
+        $("input[name='"+mtypeValue+"_name']").map(function(){
+            var name =  this.value;
+            if(name == null || name.length < 1){
+                checkFlag = true;
+            }
+        });
+        $("input[name='"+mtypeValue+"_phone']").map(function(){
+             var phone =  this.value;
+            if(phone == null || phone.length < 1){
+                checkFlag = true;
+            }
+        });
+
+        if(checkFlag){
+            notifycation('이름과 연락처는 모두 입력해야 합니다.','danger','center');
+            return false;
+        }
+        console.log("GOGOG~~!");
+
         var json = {
             division: "cleanmania",
             mtype: mtypeValue,
@@ -165,7 +191,6 @@ $('#configSaveBtn').confirmation({
             commission: Number($("#commission").val())
         };
 
-
         $.ajax({
             url: "/cleanmania/talkConfigSave",
             type: "POST",
@@ -173,10 +198,10 @@ $('#configSaveBtn').confirmation({
             dataType: 'json',
             contentType: "application/json; UTF-8;",
             success: function(data){
-                notifycation("저장을 성공 하였습니다.","primary");
+                notifycation("저장을 성공 하였습니다.","primary",'right');
             },
             error: function (request, status, error){
-                notifycation("저장을 실패 하였습니다.","danger")
+                notifycation("저장을 실패 하였습니다.","danger",'right')
             }
 
         });
