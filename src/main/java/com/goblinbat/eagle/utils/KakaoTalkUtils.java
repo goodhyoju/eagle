@@ -144,7 +144,8 @@ public class KakaoTalkUtils {
 
 
         Message message = new Message();
-        message.setFrom(cleanManiaTalkData.getSendernum());
+        /*message.setFrom(cleanManiaTalkData.getSendernum());*/
+        message.setFrom("01041771954");
         message.setTo(cleanManiaTalkData.getReceivernum());
         message.setKakaoOptions(kakaoOption);
 

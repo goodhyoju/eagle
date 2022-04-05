@@ -25,4 +25,6 @@ public interface TalkConfigRepository extends JpaRepository<TalkConfigEntity, Lo
     @Query("update talk_config t set t.used = :next_used where t.used = :pre_used and t.idx <> :idx")
     void setUsed(@Param("pre_used") int next_used, @Param("next_used") int pre_used, @Param("idx") long idx);
     TalkConfigEntity findTalkConfigEntitiesByUsed(int used);
+
+    TalkConfigEntity findTalkConfigEntitiesByUsedAndMtype(int used, String mtype);
 }

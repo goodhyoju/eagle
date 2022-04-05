@@ -37,6 +37,12 @@ public class TalkListEntity {
     @Column(name = "receiver_phone")
     private String receiver_phone;
 
+    @Column(name = "customer_name")
+    private String customer_name;
+
+    @Column(name = "customer_phone")
+    private String customer_phone;
+
     @Column(name = "message")
     private String message;
 

@@ -29,6 +29,9 @@ public interface TalkListRepository extends JpaRepository<TalkListEntity, Long> 
 
     @Query(value ="SELECT * FROM talk_list WHERE idx=:idx", nativeQuery = true)
     TalkListEntity findByRandomId(@Param("idx") int idx);
+
+    @Query(value ="SELECT * FROM talk_list WHERE customer_name=:customer_name and customer_phone=:customer_phone", nativeQuery = true)
+    TalkListEntity findTalkListByCustomer_nameAndCustomer_phone(@Param("customer_name")String customer_name,@Param("customer_phone")String customer_phone);
     /**
      *
      * @param stime

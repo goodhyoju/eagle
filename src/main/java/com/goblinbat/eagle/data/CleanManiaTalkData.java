@@ -21,4 +21,8 @@ public class CleanManiaTalkData {
     private String receivernum;  // talkconfig에서 받아옴
     private String sender;
     private String sendernum;
+
+    private String type;
+    private String selectName;
+    private String selectPhone;
 }

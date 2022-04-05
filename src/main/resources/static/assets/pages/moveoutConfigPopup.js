@@ -5,6 +5,10 @@ $( document ).ready(function() {
         addCard('all','','');
         confirmation_init();
     });
+    $("#select_plus_btn").click( function() {
+        addCard('select','','');
+        confirmation_init();
+    });
     $("#random_plus_btn").click( function() {
         addCard('random','','');
         confirmation_init();
@@ -20,6 +24,9 @@ $( document ).ready(function() {
         $(this).parent().find('a').trigger('click')
     });
     $('#r13').on('click', function(){
+        $(this).parent().find('a').trigger('click')
+    });
+    $('#r14').on('click', function(){
         $(this).parent().find('a').trigger('click')
     });
 
@@ -153,10 +160,6 @@ $('#configSaveBtn').confirmation({
     btnCancelClass: 'btn btn-danger',
     onConfirm: function (event, element) {
         var mtypeValue = $("input[name='mtype']:checked").val();
-        var getNames = $("input[name='"+mtypeValue+"_name']").map(function(){ return this.value }).get();
-        var getPhone = $("input[name='"+mtypeValue+"_phone']").map(function(){ return this.value }).get();
-        /*console.log("name size: "+getNames.length);
-        console.log("phone size: "+getPhone.length);*/
 
         // check length to names,phones
         var checkFlag = false;

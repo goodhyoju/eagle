@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,6 +39,63 @@ public class CleanManiaService {
 
     /**
      *
+     * @return
+     */
+    public TalkConfigEntity loadingTalkConfig() {
+        TalkConfigEntity talkConfig = talkConfigRepository.findTalkConfigEntitiesByUsed(1);
+        return talkConfig;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public TalkConfigEntity talkSelectconfig(){
+        TalkConfigEntity talkConfig=null;
+        try {
+            talkConfig = talkConfigRepository.findTalkConfigEntitiesByUsedAndMtype(1,"select");
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return talkConfig;
+    }
+
+    /**
+     *
+     * @param customerName
+     * @param customerPhone
+     * @return
+     */
+    public TalkListEntity talkSelectListCheck(String customerName,String customerPhone){
+        TalkListEntity talkListEntity=null;
+
+        try {
+            talkListEntity = talkListRepository.findTalkListByCustomer_nameAndCustomer_phone(customerName,customerPhone);
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return talkListEntity;
+    }
+
+    /**
+     *
+     * @param talkConfig
+     * @return
+     */
+    @Transactional
+    public TalkConfigEntity talkConfigSave( TalkConfigEntity talkConfig) {
+        TalkConfigEntity result = null;
+        try {
+            result = talkConfigRepository.saveAndFlush(talkConfig);
+            talkConfigRepository.setUsed(1,0,result.getIdx());
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     *
      * @param cleanManiaTalkData
      * @return
      */
@@ -47,13 +105,15 @@ public class CleanManiaService {
 
         // get cleanmania talk config
         TalkConfigEntity talkConfig = talkConfigRepository.findTalkConfigEntitiesByUsed(1);
-
         ArrayList<RecevierData> recevierDataArrayList = new ArrayList<>();
-
         String getType = talkConfig.getMtype();
 
+        // 선택모드와 config모드 확인
+        if (cleanManiaTalkData.getType().equals("select")) {
+            recevierDataArrayList.add(RecevierData.builder().name(cleanManiaTalkData.getSelectName()).phone(cleanManiaTalkData.getSelectPhone()).build());
+        }
         // 한사람에게 보내기
-        if (getType.equals("sigle")) {
+        else if (getType.equals("sigle")) {
             recevierDataArrayList.add(RecevierData.builder().name(talkConfig.getNames()).phone(talkConfig.getPhones()).build());
         }
         // 2명 이상에게 보내기
@@ -66,7 +126,6 @@ public class CleanManiaService {
                 }catch (Exception e){
                     recevierDataArrayList.add(RecevierData.builder().phone(phoneArr[i]).build());
                 }
-
             }
         }
         // 랜덤 보내기
@@ -123,6 +182,8 @@ public class CleanManiaService {
                             .sender_name(sendTemp.getSender())
                             .receiver_name(recevierData.getName())
                             .receiver_phone(recevierData.getPhone())
+                            .customer_name(cleanManiaTalkData.getName())
+                            .customer_phone(cleanManiaTalkData.getPhone())
                             .message(temp.toString())
                             .commission(talkConfig.getCommission())
                             .price(talkConfig.getPrice())

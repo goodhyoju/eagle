@@ -2,6 +2,7 @@ package com.goblinbat.eagle.controller;
 
 import com.goblinbat.eagle.data.CleanManiaTalkData;
 import com.goblinbat.eagle.entity.TalkConfigEntity;
+import com.goblinbat.eagle.entity.TalkListEntity;
 import com.goblinbat.eagle.repo.TalkConfigRepository;
 import com.goblinbat.eagle.service.CleanManiaService;
 import jakarta.transaction.Transactional;
@@ -25,17 +26,33 @@ import org.springframework.web.bind.annotation.*;
 public class CleanManiaController {
 
     @Autowired
-    private TalkConfigRepository talkConfigRepository;
-
-    @Autowired
     private CleanManiaService cleanManiaService;
     /**
      * @return
      */
     @GetMapping("talkconfig")
     public TalkConfigEntity loadingTalkConfig() {
-        TalkConfigEntity talkConfig = talkConfigRepository.findTalkConfigEntitiesByUsed(1);
-        return talkConfig;
+        return cleanManiaService.loadingTalkConfig();
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("talkSelectconfig")
+    public TalkConfigEntity talkSelectconfig() {
+        return cleanManiaService.talkSelectconfig();
+    }
+
+    /**
+     *
+     * @param talkConfig
+     * @return
+     */
+    @PostMapping("talkSelectListCheck")
+    @ResponseBody
+    public TalkListEntity talkSelectListCheck(@RequestBody CleanManiaTalkData talkConfig) {
+        return cleanManiaService.talkSelectListCheck(talkConfig.getName(),talkConfig.getPhone());
     }
 
     /**
@@ -46,14 +63,7 @@ public class CleanManiaController {
     @ResponseBody
     @Transactional
     public TalkConfigEntity talkConfigSave(@RequestBody TalkConfigEntity talkConfig) {
-        TalkConfigEntity result = null;
-        try {
-            result = talkConfigRepository.saveAndFlush(talkConfig);
-            talkConfigRepository.setUsed(1,0,result.getIdx());
-        }catch (Exception e){
-            log.error(e.getMessage());
-        }
-        return result;
+        return cleanManiaService.talkConfigSave(talkConfig);
     }
 
     /**
@@ -64,7 +74,6 @@ public class CleanManiaController {
     @PostMapping("/sendMoveOutTalk")
     @ResponseBody
     public int cleanManiaSendTalk(@RequestBody CleanManiaTalkData talkConfig) {
-        int result = cleanManiaService.sendMoveOutTalk(talkConfig);
-        return result;
+        return cleanManiaService.sendMoveOutTalk(talkConfig);
     }
 }

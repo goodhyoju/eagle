@@ -111,6 +111,54 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading ui-accordion-header">
+                                                <h6 class="panel-title"  style="margin: 5px;">
+                                                    <label for='r14' style="margin-bottom: 0px;">
+                                                        <input type='radio' id='r14' name='mtype' value='select' required /> 연락처 선택 발송(등록화면 전송용)
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"></a>
+                                                    </label>
+                                                </h6>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body m-l-5 m-r-5" id="select_card">
+                                                    <div class="form-group row m-10">
+                                                        <div class="col-sm-12" style="padding: 1px;margin-bottom: 5px;">
+                                                            <button class="btn btn-round btn-grd-success btn-mini btn-block" id="select_plus_btn"><i class="icofont icofont-plus"></i></button>
+                                                        </div>
+                                                        <label class="col-sm-4 col-form-label" style="padding-right: 1px;"><i class="ti-money"></i>단가</label>
+                                                        <div class="col-sm-6" style="padding-left: 1px;">
+                                                            <input type="number"  id="select_price" class="form-control form-control-round" style="padding-right: 10px;text-align: right;" placeholder="20,000">
+                                                        </div>
+                                                        <label class="col-sm-1 col-form-label" style="padding-left: 1px;">원</label>
+                                                    </div>
+
+                                                    <div class="card" style="margin-bottom: 10px;">
+                                                        <div class="card-header" style="padding: 10px 24px;">
+                                                            <div class="card-header-right" style="top: 0px;padding: 0px;right: 0px;">
+                                                                <a class="font-weight-bold card-remove text-danger" data-toggle="confirmation"><i class="ti-close"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block text-center form-group row" style="padding: 7px 9px;margin-bottom: 0.25em;">
+                                                            <label class="col-sm-4 col-form-label" style="padding-right: 1px;"><i class="ti-id-badge"></i>이름</label>
+                                                            <div class="col-sm-8" style="padding-left: 1px;">
+                                                                <input type="text" name="select_name" class="form-control form-control-round" placeholder="수신자 이름">
+                                                            </div>
+                                                            <label class="col-sm-4 col-form-label" style="padding-right: 1px"><i class="ti-mobile"></i>연락처</label>
+                                                            <div class="col-sm-8" style="padding-left: 1px;">
+                                                                <input type="text" name="select_phone" class="form-control form-control-round" placeholder="000-0000-0000">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
                                         <div class="panel panel-default">
                                             <div class="panel-heading ui-accordion-header">
                                                 <h6 class="panel-title"  style="margin: 5px;">

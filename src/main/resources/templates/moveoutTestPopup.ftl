@@ -76,6 +76,7 @@
 <script type="text/javascript">
     $("#testCallBtn").click( function() {
         var json={
+            type: "config",
             name: $("#name").val(),
             phone: $("#phone").val(),
             movedate: $("#movedate").val(),
@@ -92,6 +93,24 @@
             dataType: 'json',
             contentType: "application/json; UTF-8;"
         });
+
+        /*var tjson={
+            name: "구마적",
+            phone: "010-0000-000",
+        };
+
+        $.ajax({
+            url: "/cleanmania/talkSelectListCheck",
+            type: "POST",
+            data: JSON.stringify(tjson),
+            dataType: 'json',
+            contentType: "application/json; UTF-8;",
+            success: function(data){
+                console.log('data: '+data);
+            },error: function (request, status, error){
+                console.log('data null');
+            }
+        });*/
     });
 </script>
 </html>
