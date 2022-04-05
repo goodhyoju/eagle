@@ -99,11 +99,11 @@
 
                                                         <label class="col-sm-3 col-form-label" style="padding-right: 1px;"><i class="ti-id-badge"></i>이름</label>
                                                         <div class="col-sm-9" style="padding-left: 1px;">
-                                                            <input type="text" name="sigle_name" class="form-control form-control-round" placeholder="수신자 이름">
+                                                            <input type="text" id="sigle_name" name="sigle_name" class="form-control form-control-round" placeholder="수신자 이름">
                                                         </div>
                                                         <label class="col-sm-3 col-form-label"><i class="ti-mobile" style="padding-right: 1px;"></i>연락처</label>
                                                         <div class="col-sm-9" style="padding-left: 1px;">
-                                                            <input type="text" name="sigle_phone" class="form-control form-control-round" placeholder="000-0000-0000">
+                                                            <input type="text" id="sigle_phone" name="sigle_phone" class="form-control form-control-round" placeholder="000-0000-0000">
                                                         </div>
 
                                                     </div>
