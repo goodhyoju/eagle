@@ -148,7 +148,7 @@ public class KakaoTalkUtils {
         message.setFrom("01041771954");
         message.setTo(cleanManiaTalkData.getReceivernum());
         message.setKakaoOptions(kakaoOption);
-
+        
         SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
         log.debug(response.toString());
 

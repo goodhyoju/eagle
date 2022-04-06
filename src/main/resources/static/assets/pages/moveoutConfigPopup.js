@@ -187,7 +187,7 @@ $('#configSaveBtn').confirmation({
             mtype: mtypeValue,
             price: Number($("#"+mtypeValue+"_price").val()),
             used: 1,
-            names: $("input[name='"+mtypeValue+"_name']").map(function(){ return this.value }).get().join(),
+            names: $("input[name='"+mtypeValue+"_name']").map(function(){ return this.value.replace(/,/gi, "/") }).get().join(),
             phones: $("input[name='"+mtypeValue+"_phone']").map(function(){ return this.value }).get().join(),
             rdcount: Number($("#rdcount").val()),
             template: $("#template").val(),

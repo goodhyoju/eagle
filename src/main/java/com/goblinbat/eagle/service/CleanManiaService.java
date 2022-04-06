@@ -86,6 +86,10 @@ public class CleanManiaService {
     public TalkConfigEntity talkConfigSave( TalkConfigEntity talkConfig) {
         TalkConfigEntity result = null;
         try {
+            int getCommition = talkConfig.getCommission();
+            if(getCommition < 1){
+                talkConfig.setCommission(4000);
+            }
             result = talkConfigRepository.saveAndFlush(talkConfig);
             talkConfigRepository.setUsed(1,0,result.getIdx());
         }catch (Exception e){
