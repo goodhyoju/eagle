@@ -27,7 +27,7 @@ function createDashboard(){
     var createUrl;
 
     if(getType=='admin'){
-        createUrl = "http://49.50.174.83:3000/d/vwlz7tynz/ceongsomaenia-isa-katog-tonggye-admin?orgId=1&refresh=1m&kiosk&from="+unixBegin+"&to="+unixEnd;
+        createUrl = "http://49.50.174.83:3000/d/2AGmWo87z/ceongsomaenia-isa-katog-tonggye-admin?orgId=1&refresh=1m&kiosk&from="+unixBegin+"&to="+unixEnd;
     }else{
         createUrl = "http://49.50.174.83:3000/d/vwlz7tynz/ceongsomaenia-isa-katog-public?orgId=1&refresh=1m&kiosk&from="+unixBegin+"&to="+unixEnd;
     }
