@@ -1,5 +1,6 @@
 package com.goblinbat.eagle.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,10 +59,12 @@ public class PageController {
      * 이사 톡 전송 리스트 팝업 창
      * @return
      */
-    @RequestMapping(value = "/moveoutListPopup/{type}" , method = {RequestMethod.POST,RequestMethod.GET})
-    public ModelAndView moveoutListPopup(@PathVariable("type") String type) {
+    @RequestMapping(value = "/moveoutListPopup" , method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView moveoutListPopup(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("moveoutListPopup");
+        String type = request.getParameter("type");
         view.addObject("type",type);
+
         return view;
     }
 
