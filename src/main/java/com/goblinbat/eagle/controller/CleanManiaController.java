@@ -3,7 +3,6 @@ package com.goblinbat.eagle.controller;
 import com.goblinbat.eagle.data.CleanManiaTalkData;
 import com.goblinbat.eagle.entity.TalkConfigEntity;
 import com.goblinbat.eagle.entity.TalkListEntity;
-import com.goblinbat.eagle.repo.TalkConfigRepository;
 import com.goblinbat.eagle.service.CleanManiaService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

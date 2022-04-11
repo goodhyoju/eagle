@@ -3,6 +3,7 @@ package com.goblinbat.eagle.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,9 +58,10 @@ public class PageController {
      * 이사 톡 전송 리스트 팝업 창
      * @return
      */
-    @RequestMapping(value = "/moveoutListPopup" , method = {RequestMethod.POST,RequestMethod.GET})
-    public ModelAndView moveoutListPopup() {
+    @RequestMapping(value = "/moveoutListPopup/{type}" , method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView moveoutListPopup(@PathVariable("type") String type) {
         ModelAndView view = new ModelAndView("moveoutListPopup");
+        view.addObject("type",type);
         return view;
     }
 

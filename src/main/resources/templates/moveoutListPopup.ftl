@@ -45,6 +45,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="pageType" value="${type}" />
 </body>
 
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
