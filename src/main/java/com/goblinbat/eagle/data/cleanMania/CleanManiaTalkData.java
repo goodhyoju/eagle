@@ -1,9 +1,9 @@
-package com.goblinbat.eagle.data;
+package com.goblinbat.eagle.data.cleanMania;
 
 import lombok.Data;
 
 /**
- * packageName : com.goblinbat.eagle.data
+ * packageName : com.goblinbat.eagle.data.cleanMania
  * fileName : CleanManiaTalkData
  * author : goodhyoju
  * date : 2022/03/24 9:22 AM

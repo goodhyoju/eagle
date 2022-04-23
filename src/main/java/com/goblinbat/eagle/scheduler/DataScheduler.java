@@ -1,11 +1,9 @@
 package com.goblinbat.eagle.scheduler;
 
-import com.goblinbat.eagle.entity.TalkListEntity;
-import com.goblinbat.eagle.repo.TalkListRepository;
-import com.goblinbat.eagle.utils.DateUtils;
+import com.goblinbat.eagle.entity.cleanMania.TalkListEntity;
+import com.goblinbat.eagle.repo.cleanMania.TalkListRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import java.util.List;
 import java.util.Random;

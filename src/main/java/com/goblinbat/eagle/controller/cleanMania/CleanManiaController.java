@@ -1,9 +1,9 @@
-package com.goblinbat.eagle.controller;
+package com.goblinbat.eagle.controller.cleanMania;
 
-import com.goblinbat.eagle.data.CleanManiaTalkData;
-import com.goblinbat.eagle.entity.TalkConfigEntity;
-import com.goblinbat.eagle.entity.TalkListEntity;
-import com.goblinbat.eagle.service.CleanManiaService;
+import com.goblinbat.eagle.data.cleanMania.CleanManiaTalkData;
+import com.goblinbat.eagle.entity.cleanMania.TalkConfigEntity;
+import com.goblinbat.eagle.entity.cleanMania.TalkListEntity;
+import com.goblinbat.eagle.service.cleanMania.CleanManiaService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

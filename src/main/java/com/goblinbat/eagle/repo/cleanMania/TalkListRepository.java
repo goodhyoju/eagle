@@ -1,6 +1,6 @@
-package com.goblinbat.eagle.repo;
+package com.goblinbat.eagle.repo.cleanMania;
 
-import com.goblinbat.eagle.entity.TalkListEntity;
+import com.goblinbat.eagle.entity.cleanMania.TalkListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * packageName : com.goblinbat.eagle.controller
+ * packageName : com.goblinbat.eagle.repo.cleanMania
  * fileName : TestController
- * author : goodhyoju
+ * author : TalkListRepository
  * date : 2022/03/21 10:26 PM
  * description :
  */

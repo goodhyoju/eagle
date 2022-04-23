@@ -1,13 +1,12 @@
-package com.goblinbat.eagle.entity;
+package com.goblinbat.eagle.entity.cleanMania;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 /**
- * packageName : com.goblinbat.eagle.controller
- * fileName : TestController
+ * packageName : com.goblinbat.eagle.entity.cleanMania
+ * fileName : TalkConfigEntity
  * author : goodhyoju
  * date : 2022/03/21 10:26 PM
  * description :

@@ -1,4 +1,4 @@
-package com.goblinbat.eagle.entity;
+package com.goblinbat.eagle.entity.cleanMania;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,8 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.sql.Timestamp;
 
 /**
- * packageName : com.goblinbat.eagle.data
- * fileName : TalkListData
+ * packageName : com.goblinbat.eagle.entity.cleanMania
+ * fileName : TalkListEntity
  * author : goodhyoju
  * date : 2022/03/25 3:10 PM
  * description :

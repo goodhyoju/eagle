@@ -1,6 +1,6 @@
 package com.goblinbat.eagle.utils;
 
-import com.goblinbat.eagle.data.CleanManiaTalkData;
+import com.goblinbat.eagle.data.cleanMania.CleanManiaTalkData;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * packageName : com.goblinbat.eagle.service
- * fileName : KakaoTalkMainService
+ * packageName : com.goblinbat.eagle.utils
+ * fileName : KakaoTalkUtils
  * author : goodhyoju
  * date : 2022/03/24 9:39 AM
  * description :

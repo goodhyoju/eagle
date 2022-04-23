@@ -1,14 +1,14 @@
-package com.goblinbat.eagle.repo;
+package com.goblinbat.eagle.repo.cleanMania;
 
-import com.goblinbat.eagle.entity.TalkConfigEntity;
+import com.goblinbat.eagle.entity.cleanMania.TalkConfigEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 /**
- * packageName : com.goblinbat.eagle.controller
- * fileName : TestController
+ * packageName : com.goblinbat.eagle.repo.cleanMania
+ * fileName : TalkConfigRepository
  * author : goodhyoju
  * date : 2022/03/21 10:26 PM
  * description :

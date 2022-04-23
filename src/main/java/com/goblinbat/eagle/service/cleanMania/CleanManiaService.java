@@ -1,24 +1,23 @@
-package com.goblinbat.eagle.service;
+package com.goblinbat.eagle.service.cleanMania;
 
-import com.goblinbat.eagle.data.RecevierData;
-import com.goblinbat.eagle.data.CleanManiaTalkData;
-import com.goblinbat.eagle.entity.TalkConfigEntity;
-import com.goblinbat.eagle.entity.TalkListEntity;
-import com.goblinbat.eagle.repo.TalkConfigRepository;
-import com.goblinbat.eagle.repo.TalkListRepository;
+import com.goblinbat.eagle.data.cleanMania.RecevierData;
+import com.goblinbat.eagle.data.cleanMania.CleanManiaTalkData;
+import com.goblinbat.eagle.entity.cleanMania.TalkConfigEntity;
+import com.goblinbat.eagle.entity.cleanMania.TalkListEntity;
+import com.goblinbat.eagle.repo.cleanMania.TalkConfigRepository;
+import com.goblinbat.eagle.repo.cleanMania.TalkListRepository;
 import com.goblinbat.eagle.utils.KakaoTalkUtils;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * packageName : com.goblinbat.eagle.service
- * fileName : TalkService
+ * packageName : com.goblinbat.eagle.service.cleanMania
+ * fileName : CleanManiaService
  * author : goodhyoju
  * date : 2022/03/24 9:21 AM
  * description :
