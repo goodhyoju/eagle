@@ -117,7 +117,7 @@ public class OneshotReservationService {
                 iTotalDisplayRecords = oneshotReservationRepository.findOneshotReservationBySearchCount(sSearch);
             }
 
-
+            StringBuffer setAddr = new StringBuffer();
             for(OneshotReservationEntity data: list){
                 JSONArray ja = new JSONArray();
                 ja.put(data.getIdx());
@@ -126,11 +126,21 @@ public class OneshotReservationService {
                 ja.put(data.getName());
                 ja.put(data.getPhone());
                 ja.put(data.getAply_date());
-                ja.put(data.getApt_addr());
-                ja.put(data.getApt_name());
-                ja.put(data.getApt_size());
+
+                setAddr.append("<i class='fa fa-home'></i>실거주: ").append(data.getHome_addr());
+                if(!data.getStart_addr().isEmpty()){
+                    setAddr.append("<br/><i class='fa fa-arrow-right'></i>출발지: ").append(data.getStart_addr());
+                }
+                if(!data.getEnd_addr().isEmpty()){
+                    setAddr.append("<br/><i class='fa fa-arrow-left'></i>목적지: ").append(data.getEnd_addr());
+                }
+                ja.put(setAddr.toString());
+
+
+                ja.put(data.getHome_size());
                 ja.put(data.getStatus());
                 array.put(ja);
+                setAddr.setLength(0);
             }
 
             result.put("iTotalRecords", total);

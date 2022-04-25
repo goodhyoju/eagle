@@ -29,10 +29,10 @@ public interface OneshotReservationRepository extends JpaRepository<OneshotReser
     @Query(value ="SELECT * FROM oneshot_reservation w ORDER by w.time desc LIMIT :start,:limit  ", nativeQuery = true)
     List<OneshotReservationEntity> findOneshotReservationAll(@Param("start")  int start, @Param("limit")  int limit);
 
-    @Query(value ="SELECT * FROM oneshot_reservation w WHERE w.name LIKE %:keyword% OR w.phone LIKE %:keyword% OR w.apt_name LIKE %:keyword% OR w.service LIKE %:keyword%  ORDER by w.time desc LIMIT :start,:limit  ", nativeQuery = true)
+    @Query(value ="SELECT * FROM oneshot_reservation w WHERE w.name LIKE %:keyword% OR w.phone LIKE %:keyword% OR w.home_addr LIKE %:keyword% OR w.start_addr LIKE %:keyword% OR w.end_addr LIKE %:keyword% OR w.service LIKE %:keyword%  ORDER by w.time desc LIMIT :start,:limit  ", nativeQuery = true)
     List<OneshotReservationEntity> findOneshotReservationBySearch(@Param("keyword") String keyword, @Param("start")  int start, @Param("limit")  int limit);
 
-    @Query(value ="SELECT count(*) FROM oneshot_reservation w WHERE w.name LIKE %:keyword% OR w.phone LIKE %:keyword%  OR w.apt_name LIKE %:keyword% OR w.service", nativeQuery = true)
+    @Query(value ="SELECT count(*) FROM oneshot_reservation w WHERE w.name LIKE %:keyword% OR w.phone LIKE %:keyword%  OR w.home_addr LIKE %:keyword% OR w.start_addr LIKE %:keyword% OR w.end_addr LIKE %:keyword% OR w.service", nativeQuery = true)
     int findOneshotReservationBySearchCount(@Param("keyword") String keyword);
 
     @Modifying
