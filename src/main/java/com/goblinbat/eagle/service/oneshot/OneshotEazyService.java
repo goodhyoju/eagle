@@ -104,11 +104,11 @@ public class OneshotEazyService {
             for(OneshotEazyEntity data: list){
                 JSONArray ja = new JSONArray();
                 ja.put(data.getIdx());
-                ja.put(data.getTime());
                 ja.put(data.getService());
+                ja.put(data.getStatus());
                 ja.put(data.getName());
                 ja.put(data.getPhone());
-                ja.put(data.getStatus());
+                ja.put(data.getTime());
                 array.put(ja);
             }
 

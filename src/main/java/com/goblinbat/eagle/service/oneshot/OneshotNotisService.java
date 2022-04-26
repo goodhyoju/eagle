@@ -107,15 +107,15 @@ public class OneshotNotisService {
 
             for(OneshotNotisEntity data: list){
                 JSONArray ja = new JSONArray();
-                ja.put("");
+              //  ja.put("");
                 ja.put(data.getIdx());
-                ja.put(data.getTime());
+                ja.put("");
                 ja.put(data.getType());
                 ja.put(data.getTitle());
                 ja.put(data.getComment());
+                ja.put(data.getTime());
                 ja.put(data.getWriter());
                 ja.put(data.getRcount());
-                ja.put("");
                 array.put(ja);
             }
 

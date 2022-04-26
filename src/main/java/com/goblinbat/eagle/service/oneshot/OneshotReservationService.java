@@ -121,8 +121,8 @@ public class OneshotReservationService {
             for(OneshotReservationEntity data: list){
                 JSONArray ja = new JSONArray();
                 ja.put(data.getIdx());
-                ja.put(data.getTime());
                 ja.put(data.getService());
+                ja.put(data.getStatus());
                 ja.put(data.getName());
                 ja.put(data.getPhone());
                 ja.put(data.getAply_date());
@@ -138,7 +138,8 @@ public class OneshotReservationService {
 
 
                 ja.put(data.getHome_size());
-                ja.put(data.getStatus());
+
+                ja.put(data.getTime());
                 array.put(ja);
                 setAddr.setLength(0);
             }

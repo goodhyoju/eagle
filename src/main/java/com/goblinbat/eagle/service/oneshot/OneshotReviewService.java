@@ -86,12 +86,11 @@ public class OneshotReviewService {
 
             for(OneshotReviewEntity data: list){
                 JSONArray ja = new JSONArray();
-                ja.put(data.getTime());
                 ja.put(data.getType());
+                ja.put(data.getScope());
                 ja.put(data.getComment());
                 ja.put(data.getWriter());
-                ja.put(data.getScope());
-                ja.put("");
+                ja.put(data.getTime());
                 array.put(ja);
             }
 

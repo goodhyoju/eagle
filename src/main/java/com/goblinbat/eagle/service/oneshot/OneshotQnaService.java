@@ -111,16 +111,16 @@ public class OneshotQnaService {
                 if(data.getAnswer()!=null &&data.getAnswer().length() > 1){
                     setStatus="1";
                 }
-                ja.put("");
+
                 ja.put(data.getIdx());
-                ja.put(data.getTime());
-                ja.put(data.getType());
-                ja.put(data.getTitle());
-                ja.put(data.getComment());
-                ja.put(data.getWriter());
-                ja.put(data.getAnswer());
-                ja.put(setStatus);
                 ja.put("");
+                ja.put(data.getType());
+                ja.put(setStatus);
+                ja.put(data.getTitle());
+                ja.put(data.getWriter());
+                ja.put(data.getTime());
+                ja.put(data.getComment());
+                ja.put(data.getAnswer());
                 array.put(ja);
             }
 
