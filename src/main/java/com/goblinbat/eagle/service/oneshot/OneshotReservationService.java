@@ -1,9 +1,8 @@
 package com.goblinbat.eagle.service.oneshot;
 
-import com.goblinbat.eagle.entity.oneshot.OneshotEazyEntity;
 import com.goblinbat.eagle.entity.oneshot.OneshotReservationEntity;
-import com.goblinbat.eagle.repo.oneshot.OneshotEazyRepository;
 import com.goblinbat.eagle.repo.oneshot.OneshotReservationRepository;
+import com.goblinbat.eagle.utils.DateUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +27,9 @@ public class OneshotReservationService {
 
     @Autowired
     private OneshotReservationRepository oneshotReservationRepository;
+
+    @Autowired
+    private DateUtils dateUtils;
 
     /**
      *
@@ -79,10 +81,26 @@ public class OneshotReservationService {
      * @param oneshotReservation
      * @return
      */
-    public int delteReservation(OneshotReservationEntity oneshotReservation){
+    public int deleteReservation(OneshotReservationEntity oneshotReservation){
         int result = 0;
         try {
             oneshotReservationRepository.deleteOneshotReservationById(oneshotReservation.getIdx());
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return 1;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param oneshotReservation
+     * @return
+     */
+    public int updateReservation(OneshotReservationEntity oneshotReservation){
+        int result = 0;
+        try {
+            oneshotReservationRepository.updateOneshotReservationByIdAndConsultant(oneshotReservation.getStatus(),oneshotReservation.getConsultant(), oneshotReservation.getIdx());
         }catch (Exception e){
             log.error(e.getMessage());
             return 1;
@@ -122,24 +140,30 @@ public class OneshotReservationService {
                 JSONArray ja = new JSONArray();
                 ja.put(data.getIdx());
                 ja.put(data.getService());
-                ja.put(data.getStatus());
                 ja.put(data.getName());
                 ja.put(data.getPhone());
-                ja.put(data.getAply_date());
+                String changeAplyData = data.getAply_date();
+                try {
+                    changeAplyData = dateUtils.changeFormat(data.getAply_date(),"yyyy-MM-dd hh:mm:ss","yyyy-MM-dd hh:mm");
+                }catch (Exception e){
+                    log.error(e.getMessage());
+                }
 
-                setAddr.append("<i class='fa fa-home'></i>실거주: ").append(data.getHome_addr());
+                setAddr.append("<i class='fa fa-calendar'></i> 신청일: ").append(changeAplyData);
+                setAddr.append("<br/><i class='fa fa-home'></i> 실거주: ").append(data.getHome_addr());
                 if(!data.getStart_addr().isEmpty()){
-                    setAddr.append("<br/><i class='fa fa-arrow-right'></i>출발지: ").append(data.getStart_addr());
+                    setAddr.append("<br/><i class='fa fa-arrow-right'></i> 출발지: ").append(data.getStart_addr());
                 }
                 if(!data.getEnd_addr().isEmpty()){
-                    setAddr.append("<br/><i class='fa fa-arrow-left'></i>목적지: ").append(data.getEnd_addr());
+                    setAddr.append("<br/><i class='fa fa-arrow-left'></i> 목적지: ").append(data.getEnd_addr());
                 }
                 ja.put(setAddr.toString());
-
-
                 ja.put(data.getHome_size());
 
                 ja.put(data.getTime());
+                ja.put(data.getStatus());
+                ja.put(data.getConsultant());
+                ja.put("");
                 array.put(ja);
                 setAddr.setLength(0);
             }

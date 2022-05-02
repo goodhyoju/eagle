@@ -39,4 +39,7 @@ public class OneshotEazyEntity {
 
     @JoinColumn(name = "status")
     private int status;
+
+    @JoinColumn(name = "consultant")
+    private String consultant;
 }

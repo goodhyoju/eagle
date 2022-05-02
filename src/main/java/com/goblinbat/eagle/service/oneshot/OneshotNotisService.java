@@ -109,13 +109,13 @@ public class OneshotNotisService {
                 JSONArray ja = new JSONArray();
               //  ja.put("");
                 ja.put(data.getIdx());
-                ja.put("");
                 ja.put(data.getType());
                 ja.put(data.getTitle());
                 ja.put(data.getComment());
                 ja.put(data.getTime());
                 ja.put(data.getWriter());
                 ja.put(data.getRcount());
+                ja.put("");
                 array.put(ja);
             }
 

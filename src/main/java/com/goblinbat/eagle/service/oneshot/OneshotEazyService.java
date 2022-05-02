@@ -42,6 +42,7 @@ public class OneshotEazyService {
         return  result;
     }
 
+
     /**
      *
      * @param oneshotEazyEntity
@@ -66,6 +67,22 @@ public class OneshotEazyService {
         int result = 0;
         try {
             oneshotEazyRepository.deleteOneshotEazyById(oneshotEazyEntity.getIdx());
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return 1;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param oneshotEazyEntity
+     * @return
+     */
+    public int updateEazy(OneshotEazyEntity oneshotEazyEntity){
+        int result = 0;
+        try {
+            oneshotEazyRepository.updateOneshotEazyByIdAndConsultant(oneshotEazyEntity.getStatus(),oneshotEazyEntity.getConsultant(), oneshotEazyEntity.getIdx());
         }catch (Exception e){
             log.error(e.getMessage());
             return 1;
@@ -105,10 +122,12 @@ public class OneshotEazyService {
                 JSONArray ja = new JSONArray();
                 ja.put(data.getIdx());
                 ja.put(data.getService());
-                ja.put(data.getStatus());
                 ja.put(data.getName());
                 ja.put(data.getPhone());
                 ja.put(data.getTime());
+                ja.put(data.getStatus());
+                ja.put(data.getConsultant());
+                ja.put("");
                 array.put(ja);
             }
 

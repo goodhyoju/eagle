@@ -246,6 +246,17 @@ public class OneshotController {
 
     /**
      *
+     * @param oneshotEazyEntity
+     * @return
+     */
+    @PostMapping("/updateEazy")
+    @ResponseBody
+    public int updateEazy(@RequestBody OneshotEazyEntity oneshotEazyEntity){
+        return oneshotEazyService.updateEazy(oneshotEazyEntity);
+    }
+
+    /**
+     *
      * @param response
      * @param request
      * @return
@@ -299,7 +310,18 @@ public class OneshotController {
     @PostMapping("/deleteReservation")
     @ResponseBody
     public int deleteReservation(@RequestBody OneshotReservationEntity oneshotReservationEntity){
-        return oneshotReservationService.delteReservation(oneshotReservationEntity);
+        return oneshotReservationService.deleteReservation(oneshotReservationEntity);
+    }
+
+    /**
+     *
+     * @param oneshotReservationEntity
+     * @return
+     */
+    @PostMapping("/updateReservation")
+    @ResponseBody
+    public int updateReservation(@RequestBody OneshotReservationEntity oneshotReservationEntity){
+        return oneshotReservationService.updateReservation(oneshotReservationEntity);
     }
 
     /**

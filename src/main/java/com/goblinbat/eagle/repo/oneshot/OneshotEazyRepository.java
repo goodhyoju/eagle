@@ -38,6 +38,11 @@ public interface OneshotEazyRepository extends JpaRepository<OneshotEazyEntity, 
     @Transactional
     @Query("delete oneshot_eazy w where w.idx = :idx")
     void deleteOneshotEazyById(@Param("idx") Long idx);
+
+    @Modifying
+    @Transactional
+    @Query("update oneshot_eazy w set w.status = :status, w.consultant = :consultant where w.idx = :idx")
+    void updateOneshotEazyByIdAndConsultant(@Param("status") int status,@Param("consultant") String consultant,@Param("idx") Long idx);
 }
 
 

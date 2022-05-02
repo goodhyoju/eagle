@@ -39,6 +39,11 @@ public interface OneshotReservationRepository extends JpaRepository<OneshotReser
     @Transactional
     @Query("delete oneshot_reservation w where w.idx = :idx")
     void deleteOneshotReservationById(@Param("idx") Long idx);
+
+    @Modifying
+    @Transactional
+    @Query("update oneshot_reservation w set w.status = :status, w.consultant = :consultant where w.idx = :idx")
+    void updateOneshotReservationByIdAndConsultant(@Param("status") int status,@Param("consultant") String consultant,@Param("idx") Long idx);
 }
 
 

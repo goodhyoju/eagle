@@ -113,7 +113,6 @@ public class OneshotQnaService {
                 }
 
                 ja.put(data.getIdx());
-                ja.put("");
                 ja.put(data.getType());
                 ja.put(setStatus);
                 ja.put(data.getTitle());
@@ -121,6 +120,7 @@ public class OneshotQnaService {
                 ja.put(data.getTime());
                 ja.put(data.getComment());
                 ja.put(data.getAnswer());
+                ja.put("");
                 array.put(ja);
             }
 
