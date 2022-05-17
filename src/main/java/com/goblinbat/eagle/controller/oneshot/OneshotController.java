@@ -41,6 +41,9 @@ public class OneshotController {
 
     @Autowired
     private OneshotReservationService oneshotReservationService;
+
+    @Autowired
+    private OneshotCallcountService oneshotCallcountService;
     /**
      *
      * @param response
@@ -337,6 +340,17 @@ public class OneshotController {
         response.setHeader("Cache-Control", "no-store");
         log.debug(jsonResponse);
         return jsonResponse;
+    }
+
+    /**
+     *
+     * @param oneshotCallcountEntity
+     * @return
+     */
+    @PostMapping("updateCallcount")
+    @ResponseBody
+    public int saveNotis(@RequestBody OneshotCallcountEntity oneshotCallcountEntity) {
+        return oneshotCallcountService.updateCallcount(oneshotCallcountEntity);
     }
 }
 
