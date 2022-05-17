@@ -30,10 +30,11 @@ public class OneshotCallcountService {
     public int updateCallcount(OneshotCallcountEntity oneshotCallcountEntity){
         int result = 0;
         try {
+            oneshotCallcountEntity.setCall_count(1);
             oneshotCallcountRepository.save(oneshotCallcountEntity);
         }catch (Exception e){
             result  =1;
-            oneshotCallcountRepository.updateCallCount(oneshotCallcountEntity.getIpaddress());
+         //   oneshotCallcountRepository.updateCallCount(oneshotCallcountEntity.getIpaddress());
           //  log.error(e.getMessage());
         }
         return  result;
