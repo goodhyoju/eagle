@@ -25,6 +25,9 @@ public interface OneshotReservationRepository extends JpaRepository<OneshotReser
 
     List<OneshotReservationEntity> findAllByNameEqualsAndPhoneEquals(@Param("name")  String name, @Param("phone")  String phone);
 
+    @Query(value ="SELECT * FROM oneshot_reservation w WHERE w.phone =:phone AND w.time BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW()", nativeQuery = true)
+    List<OneshotReservationEntity> findAllByPhoneAndMonthAgo(@Param("phone")  String phone);
+
     @Query(value ="SELECT * FROM oneshot_reservation w ORDER by w.time desc LIMIT :start,:limit  ", nativeQuery = true)
     List<OneshotReservationEntity> findOneshotReservationAll(@Param("start")  int start, @Param("limit")  int limit);
 

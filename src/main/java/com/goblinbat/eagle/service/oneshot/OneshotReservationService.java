@@ -51,10 +51,10 @@ public class OneshotReservationService {
      * @param oneshotReservation
      * @return
      */
-    public List<OneshotReservationEntity> findReservationByNamePhone(OneshotReservationEntity oneshotReservation){
+    public List<OneshotReservationEntity> findAllByPhoneAndMonthAgo(OneshotReservationEntity oneshotReservation){
         List<OneshotReservationEntity> result = null;
         try {
-            result = oneshotReservationRepository.findAllByNameEqualsAndPhoneEquals(oneshotReservation.getName(),oneshotReservation.getPhone());
+            result = oneshotReservationRepository.findAllByPhoneAndMonthAgo(oneshotReservation.getPhone());
         }catch (Exception e){
             log.error(e.getMessage());
         }

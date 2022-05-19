@@ -289,10 +289,10 @@ public class OneshotController {
      * @param oneshotReservationEntity
      * @return
      */
-    @PostMapping("findReservationByNamePhone")
+    @PostMapping("findAllByPhoneAndMonthAgo")
     @ResponseBody
-    public List<OneshotReservationEntity> findReservationByNamePhone(@RequestBody OneshotReservationEntity oneshotReservationEntity) {
-        return oneshotReservationService.findReservationByNamePhone(oneshotReservationEntity);
+    public List<OneshotReservationEntity> findAllByPhoneAndMonthAgo(@RequestBody OneshotReservationEntity oneshotReservationEntity) {
+        return oneshotReservationService.findAllByPhoneAndMonthAgo(oneshotReservationEntity);
     }
 
     /**
