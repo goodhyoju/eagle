@@ -162,6 +162,7 @@ public class OneshotReservationService {
 
                 ja.put(data.getTime());
                 ja.put(data.getStatus());
+                ja.put(data.getShare());
                 ja.put(data.getConsultant());
                 ja.put("");
                 array.put(ja);

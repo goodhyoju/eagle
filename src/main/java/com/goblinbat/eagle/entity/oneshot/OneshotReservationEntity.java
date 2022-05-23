@@ -60,4 +60,7 @@ public class OneshotReservationEntity {
 
     @JoinColumn(name = "consultant")
     private String consultant;
+
+    @JoinColumn(name = "share")
+    private int share;
 }
